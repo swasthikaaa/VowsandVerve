@@ -58,9 +58,28 @@ export default function Contact() {
     }
   };
 
-  const handleBookingSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!selectedDate || !selectedTime) return;
+  const handleBookingSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!selectedDate || !selectedTime) return;
+
+  try {
+    const response = await fetch("/api/consultation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        selectedDate,
+        selectedTime,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || "Failed to book consultation");
+    }
 
     setBookingConfirmed(true);
 
@@ -69,7 +88,11 @@ export default function Contact() {
       setSelectedDate("");
       setSelectedTime("");
     }, 5000);
-  };
+  } catch (error) {
+    console.error("Consultation submit error:", error);
+    alert("Failed to book consultation. Please try again.");
+  }
+};
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
