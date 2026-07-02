@@ -103,7 +103,7 @@ export default function Footer() {
             </div>
             <div className="text-xs text-cream/50 font-sans tracking-wide mt-2">
               <p>vowsandverve@gmail.com</p>
-              <p className="mt-1 md:text-right">Colombo, Sri Lanka</p>
+              <p className="mt-1 md:text-right">Kandy, Sri Lanka</p>
             </div>
           </div>
 

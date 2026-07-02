@@ -37,7 +37,7 @@ export default function Hero() {
         <div className="animate-fade-in flex items-center gap-2 px-4 py-1.5 border border-gold-antique/25 bg-cream/90 backdrop-blur-sm rounded-full mb-8 shadow-sm">
           <span className="text-gold-antique text-[9px] animate-pulse">✦</span>
           <span className="font-sans text-[9px] uppercase tracking-[0.25em] text-emerald-deep font-bold">
-            Personalized Wedding Identities · Colombo
+            Personalized Wedding Identities · Kandy
           </span>
           <span className="text-gold-antique text-[9px] animate-pulse">✦</span>
         </div>
