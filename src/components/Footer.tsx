@@ -45,7 +45,7 @@ export default function Footer() {
                 Our Vision
               </span>
               <p className="font-serif text-lg italic text-cream">
-                “One brand, every event, beautifully coordinated.”
+                “Celebrate love in every detail, every event, beautifully coordinated.”
               </p>
             </div>
           </div>

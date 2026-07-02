@@ -80,7 +80,7 @@ export default function Hero() {
           </h1>
           
           <p className="font-serif text-base sm:text-xl md:text-2xl text-emerald-deep/90 max-w-xl mx-auto font-light tracking-wider leading-relaxed pt-2">
-            “One brand, every event, beautifully coordinated.”
+            “Celebrate love in every detail, every event, beautifully coordinated.”
           </p>
           
           <div className="w-12 h-[1px] bg-gold-antique/30 mx-auto my-3" />

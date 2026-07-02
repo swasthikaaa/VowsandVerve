@@ -153,7 +153,7 @@ export default function Navbar() {
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
           <p className="text-[9px] text-center text-emerald-deep/40 mt-4 font-sans tracking-widest uppercase">
-            One brand, every event.
+            Celebrate love in every detail, every event.
           </p>
         </div>
       </div>
