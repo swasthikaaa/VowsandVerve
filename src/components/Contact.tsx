@@ -103,13 +103,39 @@ export default function Contact() {
 
   const times = ["10:00 AM", "11:30 AM", "02:00 PM", "03:30 PM", "05:00 PM"];
 
-  const dates = [
-    { label: "Mon, Jul 6", val: "2026-07-06" },
-    { label: "Tue, Jul 7", val: "2026-07-07" },
-    { label: "Wed, Jul 8", val: "2026-07-08" },
-    { label: "Thu, Jul 9", val: "2026-07-09" },
-    { label: "Fri, Jul 10", val: "2026-07-10" },
-  ];
+  const getAvailableDates = () => {
+  const availableDates = [];
+  const today = new Date();
+
+  let currentDate = new Date(today);
+  currentDate.setDate(today.getDate() + 1); // starts from tomorrow
+
+  while (availableDates.length < 5) {
+    const day = currentDate.getDay();
+
+    // Skip Saturday and Sunday
+    if (day !== 0 && day !== 6) {
+      const label = currentDate.toLocaleDateString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+      });
+
+      const val = currentDate.toISOString().split("T")[0];
+
+      availableDates.push({
+        label,
+        val,
+      });
+    }
+
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return availableDates;
+};
+
+const dates = getAvailableDates();
 
   return (
     <section id="contact" className="py-24 bg-cream-light relative overflow-hidden">
@@ -180,7 +206,7 @@ export default function Contact() {
                           <button
                             key={d.val}
                             type="button"
-                            onClick={() => setSelectedDate(d.label)}
+                            onClick={() => setSelectedDate(`${d.label} (${d.val})`)}
                             className={`px-2 py-2 text-[10px] font-sans text-center transition-all border ${
                               selectedDate === d.label
                                 ? "bg-gold-antique text-emerald-deep border-gold-antique font-semibold"
