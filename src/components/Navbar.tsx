@@ -26,7 +26,6 @@ export default function Navbar() {
     { name: "Packages", num: "02", href: "/#packages" },
     { name: "Portfolio", num: "03", href: "/#portfolio" },
     { name: "How It Works", num: "04", href: "/#process" },
-    { name: "Who We Are", num: "05", href: "/who-are-we" },
     { name: "Contact", num: "06", href: "/#contact" },
   ];
 
