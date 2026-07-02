@@ -6,63 +6,63 @@ export default function Portfolio() {
     {
       title: "Wedding Logo & Monogram",
       subtitle: "Personalised Couple Identity",
-      image: "/portfolio/wedding_monogram.png",
+      image: "/portfolio/wedding_monogram.jpg",
       details:
         "Custom couple initials, names, and meaningful symbols designed as a premium wedding identity for invitations, cake toppers, gifts, and decor.",
     },
     {
       title: "Digital Wedding Invitations",
       subtitle: "WhatsApp, PDF & Story Invites",
-      image: "/portfolio/digital_invitation.png",
+      image: "/portfolio/digital_invitation.jpg",
       details:
         "Elegant digital invitations created for WhatsApp sharing, Instagram stories, PDF delivery, and modern online wedding announcements.",
     },
     {
       title: "Animated Invitation Videos",
       subtitle: "Modern Motion Invites",
-      image: "/portfolio/animated_invite.png",
+      image: "/portfolio/animated_invite.jpg",
       details:
         "Short animated invitation videos with romantic transitions, music-friendly layouts, couple names, event details, and cultural design elements.",
     },
     {
       title: "Welcome Board Designs",
       subtitle: "Event Entrance Styling",
-      image: "/portfolio/welcome_board.png",
+      image: "/portfolio/welcome_board.jpg",
       details:
         "Premium welcome board concepts designed to match the couple’s logo, wedding theme, floral style, colours, and venue atmosphere.",
     },
     {
       title: "Event Signage Suite",
       subtitle: "Seating, Menu & Table Details",
-      image: "/portfolio/event_signage.png",
+      image: "/portfolio/event_signage.jpg",
       details:
         "Matching seating charts, table numbers, menu cards, thank-you cards, reception signs, and directional signage for a coordinated event look.",
     },
     {
       title: "Social Media Wedding Visuals",
       subtitle: "Stories, Countdowns & Posts",
-      image: "/portfolio/social_media_visuals.png",
+      image: "/portfolio/social_media_visuals.jpg",
       details:
         "Aesthetic Instagram story invitations, wedding countdowns, save-the-date posts, engagement announcements, and couple branding visuals.",
     },
     {
       title: "Complete Wedding Branding Set",
       subtitle: "One Theme Across Every Detail",
-      image: "/portfolio/branding_set.png",
+      image: "/portfolio/branding_set.jpg",
       details:
         "A fully coordinated wedding identity including logo, invitation, homecoming invite, welcome board, thank-you card, and Instagram story design.",
     },
     {
       title: "Cultural Wedding Concepts",
       subtitle: "Sri Lankan Multi-Cultural Designs",
-      image: "/portfolio/cultural_wedding.png",
+      image: "/portfolio/cultural_wedding.jpg",
       details:
         "Design concepts for Kandyan, Tamil Hindu, Muslim Nikah, Christian church, mixed-culture, luxury hotel, and destination wedding styles.",
     },
     {
       title: "Wedding Mood Boards",
       subtitle: "Colours, Florals & Styling Direction",
-      image: "/portfolio/mood_board.png",
+      image: "/portfolio/mood_board.jpg",
       details:
         "Simple event mood boards for wedding themes, stage backdrops, colour palettes, floral concepts, and overall visual direction.",
     },
