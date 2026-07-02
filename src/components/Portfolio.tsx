@@ -4,60 +4,89 @@ import { ZoomIn } from "lucide-react";
 export default function Portfolio() {
   const items = [
     {
-      title: "Luxury Kandyan Wedding",
-      subtitle: "Traditional Sri Lankan Elegance",
-      image: "/portfolio/kandyan_wedding.png",
-      details: "Ornate gold borders inspired by Kandyan royal jewelry, set on warm textured ivory cardstock with maroon accents.",
+      title: "Wedding Logo & Monogram",
+      subtitle: "Personalised Couple Identity",
+      image: "/portfolio/wedding_monogram.png",
+      details:
+        "Custom couple initials, names, and meaningful symbols designed as a premium wedding identity for invitations, cake toppers, gifts, and decor.",
     },
     {
-      title: "Tamil Hindu Wedding",
-      subtitle: "Sacred & Vibrant Heritage",
-      image: "/portfolio/tamil_wedding.png",
-      details: "Gilded peacock motifs and temple-inspired borders, showcasing a harmonious palette of rich gold and vibrant saffron.",
+      title: "Digital Wedding Invitations",
+      subtitle: "WhatsApp, PDF & Story Invites",
+      image: "/portfolio/digital_invitation.png",
+      details:
+        "Elegant digital invitations created for WhatsApp sharing, Instagram stories, PDF delivery, and modern online wedding announcements.",
     },
     {
-      title: "Muslim Nikah Invite",
-      subtitle: "Intricate Islamic Geometry",
-      image: "/portfolio/nikah_invite.png",
-      details: "Regal deep emerald green backgrounds embellished with custom gold arabesque patterns and elegant calligraphy.",
+      title: "Animated Invitation Videos",
+      subtitle: "Modern Motion Invites",
+      image: "/portfolio/animated_invite.png",
+      details:
+        "Short animated invitation videos with romantic transitions, music-friendly layouts, couple names, event details, and cultural design elements.",
     },
     {
-      title: "Christian Church Wedding",
-      subtitle: "Classic Floral Minimalism",
-      image: "/portfolio/christian_wedding.png",
-      details: "Delicate white and gold floral borders, thin gold guidelines, and timeless serif typography on fine deckled paper.",
+      title: "Welcome Board Designs",
+      subtitle: "Event Entrance Styling",
+      image: "/portfolio/welcome_board.png",
+      details:
+        "Premium welcome board concepts designed to match the couple’s logo, wedding theme, floral style, colours, and venue atmosphere.",
     },
     {
-      title: "Minimal White & Gold",
-      subtitle: "Modern Luxury Monogram",
-      image: "/portfolio/minimal_gold_wedding.png",
-      details: "An embossed gold couple crest at the center with ample breathing room, presenting a sleek contemporary layout.",
+      title: "Event Signage Suite",
+      subtitle: "Seating, Menu & Table Details",
+      image: "/portfolio/event_signage.png",
+      details:
+        "Matching seating charts, table numbers, menu cards, thank-you cards, reception signs, and directional signage for a coordinated event look.",
     },
     {
-      title: "Royal Maroon & Gold",
-      subtitle: "Regal Majesty Theme",
-      image: "/portfolio/royal_maroon_wedding.png",
-      details: "Intricate gold foil lettering set against rich royal maroon background card overlays, offering a grand aesthetic.",
+      title: "Social Media Wedding Visuals",
+      subtitle: "Stories, Countdowns & Posts",
+      image: "/portfolio/social_media_visuals.png",
+      details:
+        "Aesthetic Instagram story invitations, wedding countdowns, save-the-date posts, engagement announcements, and couple branding visuals.",
+    },
+    {
+      title: "Complete Wedding Branding Set",
+      subtitle: "One Theme Across Every Detail",
+      image: "/portfolio/branding_set.png",
+      details:
+        "A fully coordinated wedding identity including logo, invitation, homecoming invite, welcome board, thank-you card, and Instagram story design.",
+    },
+    {
+      title: "Cultural Wedding Concepts",
+      subtitle: "Sri Lankan Multi-Cultural Designs",
+      image: "/portfolio/cultural_wedding.png",
+      details:
+        "Design concepts for Kandyan, Tamil Hindu, Muslim Nikah, Christian church, mixed-culture, luxury hotel, and destination wedding styles.",
+    },
+    {
+      title: "Wedding Mood Boards",
+      subtitle: "Colours, Florals & Styling Direction",
+      image: "/portfolio/mood_board.png",
+      details:
+        "Simple event mood boards for wedding themes, stage backdrops, colour palettes, floral concepts, and overall visual direction.",
     },
   ];
 
   return (
     <section id="portfolio" className="py-24 bg-cream-light relative overflow-hidden">
       <div className="absolute inset-0 opacity-5 pointer-events-none wedding-grid-bg" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <span className="font-sans text-xs uppercase tracking-widest text-gold-antique font-semibold block">
             Our Work
           </span>
+
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-emerald-deep">
-            Signature Design Showcase
+            Complete Wedding Branding Showcase
           </h2>
+
           <div className="w-20 h-[1px] bg-gold-antique/30 mx-auto my-4" />
+
           <p className="font-sans text-sm sm:text-base text-emerald-deep/70 max-w-xl mx-auto font-light">
-            Explore our curated portfolio of cultural and modern wedding themes designed for Sri Lankan couples.
+            Explore our full range of wedding identity designs, from custom couple monograms and digital invitations to event signage, social media visuals, and complete branding sets.
           </p>
         </div>
 
@@ -75,21 +104,24 @@ export default function Portfolio() {
                   alt={item.title}
                   fill
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  sizes="(max-w-770px) 100vw, (max-w-1200px) 50vw, 33vw"
+                  sizes="(max-width: 770px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                
+
                 {/* Elegant overlay on hover */}
                 <div className="absolute inset-0 bg-emerald-deep/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6 z-10">
                   <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out space-y-3">
                     <span className="font-sans text-[10px] uppercase tracking-widest text-gold-light font-semibold block">
                       {item.subtitle}
                     </span>
+
                     <h3 className="font-serif text-xl font-bold text-cream tracking-wide">
                       {item.title}
                     </h3>
+
                     <p className="font-sans text-xs text-cream/80 leading-relaxed font-light">
                       {item.details}
                     </p>
+
                     <div className="pt-2 flex items-center gap-1.5 text-gold-light text-xs font-semibold uppercase tracking-wider font-sans">
                       <ZoomIn className="w-3.5 h-3.5" />
                       View Details
@@ -106,6 +138,7 @@ export default function Portfolio() {
                 <span className="font-sans text-[9px] uppercase tracking-widest text-gold-antique block font-semibold">
                   {item.subtitle}
                 </span>
+
                 <h3 className="font-serif text-lg font-bold text-emerald-deep mt-1">
                   {item.title}
                 </h3>
@@ -113,7 +146,6 @@ export default function Portfolio() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
