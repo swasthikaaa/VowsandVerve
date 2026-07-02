@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Instagram, Send, Sparkles, Calendar, Clock, Laptop } from "lucide-react";
+import { Mail, Send, Sparkles, Calendar, Clock, Laptop } from "lucide-react";
+import InstagramIcon from "@/components/icons/InstagramIcon";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -197,36 +198,25 @@ export default function Contact() {
               </a>
 
               {/* Instagram Card */}
-              <a
-                href="https://instagram.com/vowsandverve"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="luxury-card p-6 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left hover:scale-[1.01]"
-              >
-                <div className="w-10 h-10 rounded-full border border-gold-antique/30 bg-cream flex items-center justify-center text-gold-antique">
-                  <svg
-                    className="w-4.5 h-4.5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                  </svg>
-                </div>
-                <div>
-                  <span className="font-sans text-[9px] uppercase tracking-widest text-gold-antique font-bold block">
-                    Instagram DM
-                  </span>
-                  <span className="font-serif text-sm font-semibold text-emerald-deep block mt-0.5">
-                    @vowsandverve
-                  </span>
-                </div>
-              </a>
+<a
+  href="https://instagram.com/vowsandverve"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="luxury-card p-6 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left hover:scale-[1.01]"
+>
+  <div className="w-10 h-10 rounded-full border border-gold-antique/30 bg-cream flex items-center justify-center text-gold-antique">
+    <InstagramIcon className="w-4.5 h-4.5" />
+  </div>
+
+  <div>
+    <span className="font-sans text-[9px] uppercase tracking-widest text-gold-antique font-bold block">
+      Instagram DM
+    </span>
+    <span className="font-serif text-sm font-semibold text-emerald-deep block mt-0.5">
+      @vowsandverve
+    </span>
+  </div>
+</a>
 
               {/* TikTok Card */}
               <a
