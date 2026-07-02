@@ -12,30 +12,58 @@ export default function Contact() {
     theme: "minimal",
     message: "",
   });
+
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        weddingDate: "",
-        theme: "minimal",
-        message: "",
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-    }, 4000);
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to submit inquiry");
+      }
+
+      setSubmitted(true);
+
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({
+          name: "",
+          email: "",
+          weddingDate: "",
+          theme: "minimal",
+          message: "",
+        });
+      }, 4000);
+    } catch (error) {
+      console.error("Form submit error:", error);
+      alert("Failed to submit inquiry. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedDate || !selectedTime) return;
+
     setBookingConfirmed(true);
+
     setTimeout(() => {
       setBookingConfirmed(false);
       setSelectedDate("");
@@ -51,6 +79,7 @@ export default function Contact() {
   };
 
   const times = ["10:00 AM", "11:30 AM", "02:00 PM", "03:30 PM", "05:00 PM"];
+
   const dates = [
     { label: "Mon, Jul 6", val: "2026-07-06" },
     { label: "Tue, Jul 7", val: "2026-07-07" },
@@ -62,18 +91,20 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 bg-cream-light relative overflow-hidden">
       <div className="absolute inset-0 opacity-5 pointer-events-none wedding-grid-bg" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <span className="font-sans text-xs uppercase tracking-widest text-gold-antique font-semibold block">
             Begin Your Story
           </span>
+
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-emerald-deep">
             Let’s Create Your Dream Wedding Identity
           </h2>
+
           <div className="w-20 h-[1px] bg-gold-antique/30 mx-auto my-4" />
+
           <p className="font-sans text-sm sm:text-base text-emerald-deep/70 max-w-xl mx-auto font-light">
             Contact us today to receive our styling brochure, discuss package customization, or request a custom quotation.
           </p>
@@ -81,19 +112,18 @@ export default function Contact() {
 
         {/* Contact Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          {/* Left Column: Booking consultation + channels */}
+          {/* Left Column */}
           <div className="lg:col-span-5 space-y-6">
-            
             {/* Booking Consultation Card */}
             <div className="luxury-border bg-emerald-deep text-cream p-8 shadow-md relative overflow-hidden">
               <div className="absolute inset-0 opacity-5 pointer-events-none wedding-grid-bg" />
-              
+
               <div className="space-y-6 relative z-10">
                 <div className="space-y-1">
                   <span className="font-sans text-[9px] uppercase tracking-widest text-gold-antique font-semibold block">
                     Bespoke Consultation
                   </span>
+
                   <h3 className="font-serif text-xl sm:text-2xl font-bold text-cream tracking-wide">
                     Private Design Session
                   </h3>
@@ -106,7 +136,11 @@ export default function Contact() {
                 {bookingConfirmed ? (
                   <div className="bg-cream/10 border border-gold-antique/30 p-4 text-center space-y-2 animate-fade-in">
                     <Sparkles className="w-5 h-5 text-gold-antique mx-auto" />
-                    <h4 className="font-serif text-sm font-semibold text-cream">Consultation Confirmed</h4>
+
+                    <h4 className="font-serif text-sm font-semibold text-cream">
+                      Consultation Confirmed
+                    </h4>
+
                     <p className="font-sans text-[10px] text-cream/70 leading-relaxed">
                       We have booked your slot for {selectedDate} at {selectedTime}. A calendar invitation has been sent to your email.
                     </p>
@@ -117,6 +151,7 @@ export default function Contact() {
                       <span className="font-sans text-[9px] uppercase tracking-wider text-gold-antique font-semibold block">
                         Select a Discovery Date
                       </span>
+
                       <div className="grid grid-cols-3 gap-2">
                         {dates.map((d) => (
                           <button
@@ -139,6 +174,7 @@ export default function Contact() {
                       <span className="font-sans text-[9px] uppercase tracking-wider text-gold-antique font-semibold block">
                         Select an Available Time (IST)
                       </span>
+
                       <div className="flex flex-wrap gap-2">
                         {times.map((t) => (
                           <button
@@ -169,16 +205,19 @@ export default function Contact() {
                 )}
 
                 <div className="flex items-center justify-between border-t border-cream/10 pt-4 text-[10px] text-cream/60 font-sans">
-                  <span className="flex items-center gap-1"><Clock className="w-3 h-3 text-gold-antique" /> 30 Mins</span>
-                  <span className="flex items-center gap-1"><Laptop className="w-3 h-3 text-gold-antique" /> Virtual Session</span>
-                </div>
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-3 h-3 text-gold-antique" /> 30 Mins
+                  </span>
 
+                  <span className="flex items-center gap-1">
+                    <Laptop className="w-3 h-3 text-gold-antique" /> Virtual Session
+                  </span>
+                </div>
               </div>
             </div>
 
             {/* Channels Info Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
-              
               {/* Gmail Card */}
               <a
                 href="mailto:vowsandverve@gmail.com"
@@ -187,10 +226,12 @@ export default function Contact() {
                 <div className="w-10 h-10 rounded-full border border-gold-antique/30 bg-cream flex items-center justify-center text-gold-antique">
                   <Mail className="w-4.5 h-4.5" />
                 </div>
+
                 <div>
                   <span className="font-sans text-[9px] uppercase tracking-widest text-gold-antique font-bold block">
                     Email Us
                   </span>
+
                   <span className="font-serif text-sm font-semibold text-emerald-deep block mt-0.5">
                     vowsandverve@gmail.com
                   </span>
@@ -198,25 +239,26 @@ export default function Contact() {
               </a>
 
               {/* Instagram Card */}
-<a
-  href="https://instagram.com/vowsandverve"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="luxury-card p-6 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left hover:scale-[1.01]"
->
-  <div className="w-10 h-10 rounded-full border border-gold-antique/30 bg-cream flex items-center justify-center text-gold-antique">
-    <InstagramIcon className="w-4.5 h-4.5" />
-  </div>
+              <a
+                href="https://instagram.com/vowsandverve"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="luxury-card p-6 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left hover:scale-[1.01]"
+              >
+                <div className="w-10 h-10 rounded-full border border-gold-antique/30 bg-cream flex items-center justify-center text-gold-antique">
+                  <InstagramIcon className="w-4.5 h-4.5" />
+                </div>
 
-  <div>
-    <span className="font-sans text-[9px] uppercase tracking-widest text-gold-antique font-bold block">
-      Instagram DM
-    </span>
-    <span className="font-serif text-sm font-semibold text-emerald-deep block mt-0.5">
-      @vowsandverve
-    </span>
-  </div>
-</a>
+                <div>
+                  <span className="font-sans text-[9px] uppercase tracking-widest text-gold-antique font-bold block">
+                    Instagram DM
+                  </span>
+
+                  <span className="font-serif text-sm font-semibold text-emerald-deep block mt-0.5">
+                    @vowsandverve
+                  </span>
+                </div>
+              </a>
 
               {/* TikTok Card */}
               <a
@@ -234,24 +276,22 @@ export default function Contact() {
                     <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.23.95 1.2 2.27 2.06 3.75 2.45v3.98c-1.63-.03-3.23-.51-4.63-1.39-.42-.26-.81-.57-1.17-.91v7.69c.04 1.83-.54 3.63-1.64 5.09-1.36 1.8-3.5 2.94-5.8 3.12-2.3.18-4.59-.44-6.36-1.74-1.92-1.41-3.12-3.55-3.26-5.94-.14-2.4 1-4.75 2.98-6.14 1.77-1.25 3.98-1.72 6.13-1.29v4.04c-1.12-.31-2.31-.1-3.27.57-.96.67-1.52 1.79-1.5 2.97.02 1.19.64 2.28 1.66 2.9 1.02.62 2.3.61 3.32-.02 1.02-.63 1.6-1.76 1.56-2.95V.02z" />
                   </svg>
                 </div>
+
                 <div>
                   <span className="font-sans text-[9px] uppercase tracking-widest text-gold-antique font-bold block">
                     TikTok
                   </span>
+
                   <span className="font-serif text-sm font-semibold text-emerald-deep block mt-0.5">
                     @vowsandverve
                   </span>
                 </div>
               </a>
-
             </div>
-
           </div>
 
           {/* Right Column: Inquiry Form */}
           <div className="lg:col-span-7 bg-cream-light border border-gold-antique/20 p-8 sm:p-10 shadow-md relative">
-            
-            {/* Corner border details */}
             <div className="absolute top-3 left-3 w-2 h-2 border-t border-l border-gold-antique/30" />
             <div className="absolute top-3 right-3 w-2 h-2 border-t border-r border-gold-antique/30" />
             <div className="absolute bottom-3 left-3 w-2 h-2 border-b border-l border-gold-antique/30" />
@@ -262,9 +302,11 @@ export default function Contact() {
                 <div className="w-16 h-16 mx-auto rounded-full bg-gold-antique/10 border border-gold-antique flex items-center justify-center text-gold-antique">
                   <Sparkles className="w-6 h-6 animate-pulse" />
                 </div>
+
                 <h3 className="font-serif text-2xl font-bold text-emerald-deep">
                   Thank You, Beloved Couple
                 </h3>
+
                 <p className="font-sans text-sm text-emerald-deep/70 max-w-sm mx-auto leading-relaxed">
                   We have received your details. Our design consultants will reach out to you via email within 24 hours with our packages and monogram catalog.
                 </p>
@@ -276,11 +318,14 @@ export default function Contact() {
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {/* Name */}
                   <div className="space-y-1.5">
-                    <label htmlFor="name" className="font-sans text-[10px] uppercase tracking-widest text-gold-antique font-semibold block">
+                    <label
+                      htmlFor="name"
+                      className="font-sans text-[10px] uppercase tracking-widest text-gold-antique font-semibold block"
+                    >
                       Your Full Names
                     </label>
+
                     <input
                       type="text"
                       id="name"
@@ -293,11 +338,14 @@ export default function Contact() {
                     />
                   </div>
 
-                  {/* Email */}
                   <div className="space-y-1.5">
-                    <label htmlFor="email" className="font-sans text-[10px] uppercase tracking-widest text-gold-antique font-semibold block">
+                    <label
+                      htmlFor="email"
+                      className="font-sans text-[10px] uppercase tracking-widest text-gold-antique font-semibold block"
+                    >
                       Email Address
                     </label>
+
                     <input
                       type="email"
                       id="email"
@@ -312,11 +360,14 @@ export default function Contact() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {/* Wedding Date */}
                   <div className="space-y-1.5">
-                    <label htmlFor="weddingDate" className="font-sans text-[10px] uppercase tracking-widest text-gold-antique font-semibold block">
+                    <label
+                      htmlFor="weddingDate"
+                      className="font-sans text-[10px] uppercase tracking-widest text-gold-antique font-semibold block"
+                    >
                       Wedding Date (Optional)
                     </label>
+
                     <input
                       type="text"
                       id="weddingDate"
@@ -328,11 +379,14 @@ export default function Contact() {
                     />
                   </div>
 
-                  {/* Preferred Style Theme */}
                   <div className="space-y-1.5">
-                    <label htmlFor="theme" className="font-sans text-[10px] uppercase tracking-widest text-gold-antique font-semibold block">
+                    <label
+                      htmlFor="theme"
+                      className="font-sans text-[10px] uppercase tracking-widest text-gold-antique font-semibold block"
+                    >
                       Preferred Style Theme
                     </label>
+
                     <select
                       id="theme"
                       name="theme"
@@ -351,11 +405,14 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Message */}
                 <div className="space-y-1.5">
-                  <label htmlFor="message" className="font-sans text-[10px] uppercase tracking-widest text-gold-antique font-semibold block">
+                  <label
+                    htmlFor="message"
+                    className="font-sans text-[10px] uppercase tracking-widest text-gold-antique font-semibold block"
+                  >
                     Share Your Ideas & Requirements
                   </label>
+
                   <textarea
                     id="message"
                     name="message"
@@ -368,23 +425,20 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Submit button */}
                 <div>
                   <button
                     type="submit"
-                    className="w-full justify-center inline-flex items-center gap-2.5 px-6 py-4 bg-emerald-deep hover:bg-gold-antique text-cream hover:text-emerald-deep font-sans text-xs font-semibold uppercase tracking-widest transition-all duration-300 border border-gold-antique/30 shadow-[3px_3px_0px_rgba(197,168,90,0.3)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5"
+                    disabled={isSubmitting}
+                    className="w-full justify-center inline-flex items-center gap-2.5 px-6 py-4 bg-emerald-deep hover:bg-gold-antique disabled:bg-emerald-deep/60 text-cream hover:text-emerald-deep disabled:hover:text-cream font-sans text-xs font-semibold uppercase tracking-widest transition-all duration-300 border border-gold-antique/30 shadow-[3px_3px_0px_rgba(197,168,90,0.3)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 disabled:cursor-not-allowed"
                   >
-                    Submit Inquiry
+                    {isSubmitting ? "Submitting..." : "Submit Inquiry"}
                     <Send className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </form>
             )}
-
           </div>
-
         </div>
-
       </div>
     </section>
   );
