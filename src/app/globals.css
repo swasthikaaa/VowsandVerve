@@ -1,26 +1,122 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FCFBF7;
+  --foreground: #042E1B;
+  
+  --cream: #FCFBF7;
+  --cream-light: #FDFDFB;
+  --cream-dark: #F5F1E6;
+  --emerald-deep: #042E1B;
+  --emerald-light: #0A3A20;
+  --gold-antique: #C5A85A;
+  --gold-light: #E5C478;
+  --gold-dark: #A5893D;
+  --beige-soft: #F4EFE6;
+  --beige-dark: #EFE9DC;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  --color-cream: var(--cream);
+  --color-cream-light: var(--cream-light);
+  --color-cream-dark: var(--cream-dark);
+  --color-emerald-deep: var(--emerald-deep);
+  --color-emerald-light: var(--emerald-light);
+  --color-gold-antique: var(--gold-antique);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-beige-soft: var(--beige-soft);
+  --color-beige-dark: var(--beige-dark);
+  
+  --font-serif: var(--font-serif), Cormorant Garamond, Georgia, serif;
+  --font-sans: var(--font-sans), Plus Jakarta Sans, system-ui, sans-serif;
+  
+  --animate-fade-in: fade-in 1.2s ease-out forwards;
+  --animate-slide-up: slide-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-sparkle: sparkle 2s ease-in-out infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
+@keyframes slide-up {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-antique);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* Base Styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--cream);
+  color: var(--emerald-deep);
+  font-family: var(--font-sans), sans-serif;
+}
+
+/* Luxury border styling helpers */
+.luxury-border {
+  border: 1px solid rgba(197, 168, 90, 0.3);
+  position: relative;
+}
+
+.luxury-border::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid rgba(197, 168, 90, 0.15);
+  pointer-events: none;
+}
+
+.luxury-card {
+  background: var(--cream-light);
+  border: 1px solid rgba(197, 168, 90, 0.2);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card:hover {
+  border-color: rgba(197, 168, 90, 0.6);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -10px rgba(4, 46, 27, 0.08);
+}
+
+/* Gold Text Gradient */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #A5893D 0%, #C5A85A 50%, #E5C478 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Background grid overlay */
+.wedding-grid-bg {
+  background-image: 
+    radial-gradient(rgba(197, 168, 90, 0.05) 1px, transparent 1px),
+    radial-gradient(rgba(197, 168, 90, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
 }
